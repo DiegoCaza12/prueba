@@ -16,44 +16,29 @@
     </ion-toolbar>
   </ion-header>
 
+  
   <div id="container" >
+     
     <ion-list *ngIf="bandera == false">
-      <ion-list-header>
-        <ion-label>id</ion-label>
-        <ion-label>Nombre</ion-label>
-        <ion-label>Detalle</ion-label>
-        <ion-label>Precio</ion-label>
-        <ion-label>Opciones</ion-label>
-      </ion-list-header>
-
-       <ion-item *ngFor="let team of ListTeam">
-        <ion-grid>
-          <ion-row>
-             <ion-col>
-              <ion-label>{{team.id}}</ion-label>
-             </ion-col>
-             <ion-col>
-               <ion-label>{{team.nombre}}</ion-label>
-             </ion-col>
-             <ion-col>
-              <ion-label>{{team.detalle}}</ion-label>
-             </ion-col>
-             <ion-col>
-              <ion-label>{{team.precio}}</ion-label>
-             </ion-col>
-             <ion-col>
+      <ion-card id="card" *ngFor="let team of ListTeam">
+                    
+              <p>Id producto: {{team.id}}</p>
+       
+               <p>Nombre: {{team.nombre}}</p>
+                
+              <p>Detalle: {{team.detalle}}</p>
+             
+              <p>Precio: {{team.precio}}</p>
+           
               <ion-button color="warning" (click)="getTeam(team.id)">
                 <ion-icon name="pencil"></ion-icon>
               </ion-button>
               <ion-button color="danger" (click)="getId(team.id)">
                 <ion-icon name="trash"></ion-icon>
-              </ion-button>
-            </ion-col>
-           
-          </ion-row>
-        </ion-grid> 
-      </ion-item >
-   </ion-list>
+              </ion-button>      
+    </ion-card>
+  </ion-list>
+  
  
     <ion-card id="card-position" *ngIf="bandera">
       <ion-toolbar>
