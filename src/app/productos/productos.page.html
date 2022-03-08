@@ -1,0 +1,86 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>Productos</ion-title>
+    <ion-buttons slot="end">
+    <ion-button color="success" fill="outline" 
+               (click)="openAndCloseModal()">
+               Añadir Producto</ion-button>
+    </ion-buttons>           
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Productos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" >
+    <ion-list *ngIf="bandera == false">
+      <ion-list-header>
+        <ion-label>id</ion-label>
+        <ion-label>Nombre</ion-label>
+        <ion-label>Detalle</ion-label>
+        <ion-label>Precio</ion-label>
+        <ion-label>Opciones</ion-label>
+      </ion-list-header>
+
+       <ion-item *ngFor="let team of ListTeam">
+        <ion-grid>
+          <ion-row>
+             <ion-col>
+              <ion-label>{{team.id}}</ion-label>
+             </ion-col>
+             <ion-col>
+               <ion-label>{{team.nombre}}</ion-label>
+             </ion-col>
+             <ion-col>
+              <ion-label>{{team.detalle}}</ion-label>
+             </ion-col>
+             <ion-col>
+              <ion-label>{{team.precio}}</ion-label>
+             </ion-col>
+             <ion-col>
+              <ion-button color="warning" (click)="getTeam(team.id)">
+                <ion-icon name="pencil"></ion-icon>
+              </ion-button>
+              <ion-button color="danger" (click)="getId(team.id)">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </ion-col>
+           
+          </ion-row>
+        </ion-grid> 
+      </ion-item >
+   </ion-list>
+ 
+    <ion-card id="card-position" *ngIf="bandera">
+      <ion-toolbar>
+         <ion-button color="danger" slot="end" fill="outline"
+        (click)="openAndCloseModal()">X</ion-button>
+      </ion-toolbar>
+       
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="team.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Detalle</ion-label>
+          <ion-input [(ngModel)]="team.detalle"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Precio</ion-label>
+          <ion-input [(ngModel)]="team.precio"></ion-input>
+        </ion-item>
+        <ion-button color="success" expand="full"
+                   (click)="save()">
+                   <span *ngIf="isUpdate">Actualizar</span>
+                   <span *ngIf="isUpdate==false">Guardar</span>
+                  </ion-button>
+       </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

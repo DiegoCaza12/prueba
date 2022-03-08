@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>Clientes</ion-title>
+    <ion-buttons slot="end">
+    <ion-button color="success" fill="outline" 
+               (click)="openAndCloseModal()">
+               Añadir Clientes</ion-button>
+    </ion-buttons>           
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Clientes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" >
+    <ion-list *ngIf="bandera == false">
+      <ion-list-header>
+        <ion-label>id</ion-label>
+        <ion-label>Cedula</ion-label>
+        <ion-label>Nombre</ion-label>
+        <ion-label>Apellido</ion-label>
+        <ion-label>Email</ion-label>
+        <ion-label>Telefono</ion-label>
+        <ion-label>Direccion</ion-label>
+        <ion-label>Opciones</ion-label>
+      </ion-list-header>
+
+       <ion-item *ngFor="let team1 of ListTeam">
+        <ion-grid>
+          <ion-row>
+             <ion-col>
+              <ion-label>{{team1.id}}</ion-label>
+             </ion-col>
+             <ion-col>
+               <ion-label>{{team1.cedula}}</ion-label>
+             </ion-col>
+             <ion-col>
+              <ion-label>{{team1.nombre}}</ion-label>
+             </ion-col>
+             <ion-col>
+              <ion-label>{{team1.apellido}}</ion-label>
+             </ion-col>
+              <ion-col>
+                <ion-label>{{team1.email}}</ion-label>
+               </ion-col>
+               <ion-col>
+                <ion-label>{{team1.telefono}}</ion-label>
+               </ion-col>
+               <ion-col>
+                <ion-label>{{team1.direccion}}</ion-label>
+               </ion-col>
+               <ion-col>
+              <ion-button color="warning" (click)="getTeam1(team1.id)">
+                <ion-icon name="pencil"></ion-icon>
+              </ion-button>
+              <ion-button color="danger" (click)="getId1(team1.id)">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </ion-col>
+           </ion-row>
+        </ion-grid> 
+      </ion-item >
+   </ion-list>
+ 
+    <ion-card id="card-position" *ngIf="bandera">
+      <ion-toolbar>
+         <ion-button color="danger" slot="end" fill="outline"
+        (click)="openAndCloseModal()">X</ion-button>
+      </ion-toolbar>
+       
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Cedula</ion-label>
+          <ion-input [(ngModel)]="team1.cedula"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="team1.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Apellido</ion-label>
+          <ion-input [(ngModel)]="team1.apellido"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="team1.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Telefono</ion-label>
+          <ion-input [(ngModel)]="team1.telefono"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Direccion</ion-label>
+          <ion-input [(ngModel)]="team1.direccion"></ion-input>
+        </ion-item>
+        <ion-button color="success" expand="full"
+                   (click)="save()">
+                   <span *ngIf="isUpdate">Actualizar</span>
+                   <span *ngIf="isUpdate==false">Guardar</span>
+                  </ion-button>
+       </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>
+
